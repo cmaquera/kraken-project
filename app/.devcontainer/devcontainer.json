@@ -1,0 +1,8 @@
+{
+    "name": "Angular DevContainer",
+    "dockerComposeFile": "../../docker-compose.yml",
+    "service": "app",    
+    "workspaceFolder": "/workspaces/app",
+    "postCreateCommand": "npm install -g @angular/cli"
+}
+  
