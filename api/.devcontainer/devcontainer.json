@@ -1,0 +1,8 @@
+{
+    "name": "Spring Boot DevContainer",
+    "dockerComposeFile": "../../docker-compose.yml",
+    "service": "api",    
+    "workspaceFolder": "/workspaces/api/source",      
+    "forwardPorts": [5432]
+}
+  
