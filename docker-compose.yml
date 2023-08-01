@@ -1,0 +1,33 @@
+version: "3.8"
+services:
+  app:
+    container_name: app-dev
+    image: mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye
+    volumes: 
+      - .:/workspaces:cached
+    command: sleep infinity
+    network_mode: service:api
+  api:
+    container_name: api-dev
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_PASSWORD: cmaquera
+      POSTGRES_USER: cmaquera
+      POSTGRES_DB: kraken-db
+      POSTGRES_HOSTNAME: postgres-db
+    volumes:
+      - .:/workspaces:cached
+    command: sleep infinity
+    network_mode: service:database
+  database:
+    container_name: postgres-db
+    image: postgres:latest
+    restart: unless-stopped
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: cmaquera
+      POSTGRES_USER: cmaquera
+      POSTGRES_DB: kraken-db
