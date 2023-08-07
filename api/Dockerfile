@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/devcontainers/java:1-17-bullseye
 
-ARG INSTALL_MAVEN="false"
+ARG INSTALL_MAVEN="true"
 ARG MAVEN_VERSION=""
 
 ARG INSTALL_GRADLE="false"
