@@ -18,10 +18,20 @@ public class Project extends BaseEntity {
     private String name;
     private String description;
     private String status;
-    private String category;
     private Date starDate;
     private Date endDate;
-    private String client;
+
+    @ManyToOne
+    @JoinColumn(name="category_id", nullable=false)
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name="client_id", nullable=false)
+    private Client client;
+
+    @ManyToOne
+    @JoinColumn(name = "developer_id")
+    private Developer developer;
 
     @ManyToMany
     @JoinTable(
@@ -29,6 +39,12 @@ public class Project extends BaseEntity {
         joinColumns = @JoinColumn(name = "project_id"),
         inverseJoinColumns = @JoinColumn(name = "technology_id")
     )
-    Set<Technology> technologies;
+    private Set<Technology> technologies;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_image_id", referencedColumnName = "id")
+    private ProjectImage projectImage;
+
+    
 
 }

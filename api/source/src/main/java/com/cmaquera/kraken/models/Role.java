@@ -1,20 +1,22 @@
 package com.cmaquera.kraken.models;
 
+import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="adress")
+@Table(name="role")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Adress extends BaseEntity {
+public class Role extends BaseEntity {
 
-    private String country;
-    private String state;
+    private String name;
 
-    @OneToOne(mappedBy="adress")
-    private User user;
+    @ManyToMany(mappedBy = "roles")
+    private Set<Access> accesses;
+    
 }

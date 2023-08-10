@@ -1,16 +1,18 @@
 package com.cmaquera.kraken.models;
 
+import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="user")
+@Table(name="Developer")
 @Getter
 @Setter
 @NoArgsConstructor
-public class User {
+public class Developer extends BaseEntity {
     
     private String name;
     private String apellido;
@@ -27,7 +29,13 @@ public class User {
     private Access access;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "adress_id", referencedColumnName = "id")
-    private Adress adress;
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
+
+    @OneToMany(mappedBy = "developer")
+    private Set<SocialLink> socialLinks;
+
+    @OneToMany(mappedBy = "developer")
+    private Set<Project> projects;
 
 }

@@ -1,25 +1,23 @@
 package com.cmaquera.kraken.models;
 
-import java.util.Set;
-
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="technology")
+@Table(name="project_image")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Technology extends BaseEntity {
-
-    private String name;
+public class ProjectImage extends BaseEntity {
+    
+    private String url;
     private String description;
 
-    @ManyToMany(mappedBy = "technologies")
-    private Set<Project> projects;
+    @OneToOne(mappedBy="projectImage")
+    private Project project;
 
 }

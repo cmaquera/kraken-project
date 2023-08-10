@@ -10,14 +10,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="social")
+@Table(name="client")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Social extends BaseEntity {
+public class Client extends BaseEntity {
     
     private String name;
-
-    @OneToMany(mappedBy = "social")
-    private Set<SocialLink> socialLinksinks;
+    private String description;
+    
+    @OneToMany(mappedBy = "client")
+    private Set<Project> projects;
 }

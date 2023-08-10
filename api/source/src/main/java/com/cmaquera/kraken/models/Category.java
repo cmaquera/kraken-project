@@ -2,24 +2,21 @@ package com.cmaquera.kraken.models;
 
 import java.util.Set;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="technology")
+@Table(name="category")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Technology extends BaseEntity {
-
+public class Category extends BaseEntity {
+    
     private String name;
     private String description;
 
-    @ManyToMany(mappedBy = "technologies")
+    @OneToMany(mappedBy = "category")
     private Set<Project> projects;
-
 }
