@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cmaquera.kraken.models.Project;
+import com.cmaquera.kraken.payloads.ProjectDTO;
 import com.cmaquera.kraken.services.ProjectService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,23 +27,23 @@ public class ProjectController {
     private ProjectService projectService;
 
     @PostMapping(value = "/", consumes = "application/json")
-    public Project create(@RequestBody Project project) {
-        return projectService.create(project);
+    public ProjectDTO create(@RequestBody ProjectDTO project) {
+        return projectService.createProject(project);
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")
-    public Project retrieve(@PathVariable Long id) {
-        return projectService.retrieve(id);
+    public ProjectDTO retrieve(@PathVariable Long id) {
+        return projectService.getProjectById(id);
     }
 
     @PutMapping(value = "/", consumes = "application/json")
-    public Project update(@RequestBody Project project) {
-        return projectService.update(project);
+    public ProjectDTO update(@RequestBody ProjectDTO project, @PathVariable(name = "id") Long id) {
+        return projectService.updateProject(project, id);
     }
 
     @DeleteMapping(value = "/")
     public String delete(Long id) {
-        projectService.delete(id);
+        projectService.deleteProject(id);
         return "Done";
     }
 

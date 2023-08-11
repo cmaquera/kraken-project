@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import lombok.Setter;
 @Table(name="project")
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 public class Project extends BaseEntity {
     
