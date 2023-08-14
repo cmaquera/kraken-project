@@ -44,8 +44,8 @@ public class Project extends BaseEntity {
     private Set<Technology> technologies;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "project_image_id", referencedColumnName = "id")
-    private ProjectImage projectImage;
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    private Image image;
 
     
 

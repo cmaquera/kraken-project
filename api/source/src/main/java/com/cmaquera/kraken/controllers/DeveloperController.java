@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cmaquera.kraken.payloads.ProjectDTO;
-import com.cmaquera.kraken.services.ProjectService;
+import com.cmaquera.kraken.payloads.DeveloperDTO;
+import com.cmaquera.kraken.services.DeveloperService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -25,40 +25,40 @@ import lombok.RequiredArgsConstructor;
 
 
 @RestController
-@RequestMapping("api/project")
+@RequestMapping("api/developer")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class ProjectController {
+public class DeveloperController {
 
     @Autowired
-    private ProjectService projectService;
+    private DeveloperService developerService;
 
     @PostMapping(value = "/", consumes = "application/json")
-    public ResponseEntity<ProjectDTO> create(@RequestBody ProjectDTO projectDTO) {
-        return new ResponseEntity<>(projectService.createProject(projectDTO), HttpStatus.CREATED);
+    public ResponseEntity<DeveloperDTO> create(@RequestBody DeveloperDTO developerDTO) {
+        return new ResponseEntity<>(developerService.createDeveloper(developerDTO), HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<ProjectDTO> getById(@PathVariable Long id) {
-        return new ResponseEntity<>(projectService.getProjectById(id), HttpStatus.OK);
+    public ResponseEntity<DeveloperDTO> getById(@PathVariable Long id) {
+        return new ResponseEntity<>(developerService.getDeveloperById(id), HttpStatus.OK);
     }
 
     @GetMapping(value = "/")
-    public ResponseEntity<List<ProjectDTO>> getAll() {
-        return new ResponseEntity<>(projectService.getAllProjects(), HttpStatus.OK);
+    public ResponseEntity<List<DeveloperDTO>> getAll() {
+        return new ResponseEntity<>(developerService.getAllDevelopers(), HttpStatus.OK);
     }
 
     @PutMapping(value = "/", consumes = "application/json")
-    public ResponseEntity<ProjectDTO> update(@RequestBody ProjectDTO projectDTO, @PathVariable(name = "id") Long id) {        
-        return new ResponseEntity<>(projectService.updateProject(projectDTO, id), HttpStatus.OK);
+    public ResponseEntity<DeveloperDTO> update(@RequestBody DeveloperDTO developerDTO, @PathVariable(name = "id") Long id) {        
+        return new ResponseEntity<>(developerService.updateDeveloper(developerDTO, id), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<ObjectNode> delete(Long id) throws JsonProcessingException {
-        projectService.removeProject(id);
+        developerService.removeDeveloper(id);
         ObjectMapper objectMapper = new ObjectMapper();
         var objectNode = objectMapper.createObjectNode();
-        objectNode.put("message", "Project deleted successfully...");
+        objectNode.put("message", "Developer deleted successfully...");
         objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectNode);
         return new ResponseEntity<>(objectNode, HttpStatus.OK);
     }

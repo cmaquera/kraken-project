@@ -1,41 +1,19 @@
 package com.cmaquera.kraken.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-import com.cmaquera.kraken.models.Client;
-import com.cmaquera.kraken.repositories.ClientRepository;
+import com.cmaquera.kraken.payloads.ClientDTO;
 
-import jakarta.persistence.EntityNotFoundException;
+public interface ClientService {
 
-@Service
-public class ClientService implements BaseService<Client> {
+    ClientDTO createClient(ClientDTO clientDTO);
 
-    @Autowired
-    private ClientRepository clientRepository;
+    ClientDTO getClientById(Long id);
 
-    @Override
-    public Client create(Client entity) {
-        return clientRepository.save(entity);
-    }
+    List<ClientDTO> getAllClients();
 
-    @Override
-    public Client retrieve(Long id) {
-        return clientRepository.findById(id).orElseThrow(
-            () -> new EntityNotFoundException("Client with id: " + id + ", not avaible")    
-        );
-    }
-
-    @Override
-    public Client update(Client entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
-    }
-
-    @Override
-    public void delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
+    ClientDTO updateClient(ClientDTO clientDTO, Long id);
+    
+    void removeClient(Long id);
     
 }

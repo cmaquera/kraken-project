@@ -8,16 +8,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="project_image")
+@Table(name="image")
 @Getter
 @Setter
 @NoArgsConstructor
-public class ProjectImage extends BaseEntity {
+public class Image extends BaseEntity {
     
     private String url;
     private String description;
 
-    @OneToOne(mappedBy="projectImage")
+    @OneToOne(mappedBy="image")
     private Project project;
+
+    @OneToOne(mappedBy="image")
+    private Developer developer;
 
 }

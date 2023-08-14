@@ -8,21 +8,21 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="access")
+@Table(name="credential")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Access extends BaseEntity {
+public class Credential extends BaseEntity {
     private String username;
     private String password;
 
-    @OneToOne(mappedBy="access")
+    @OneToOne(mappedBy="credential")
     private Developer developer;
 
     @ManyToMany
     @JoinTable(
-        name = "access_role",
-        joinColumns = @JoinColumn(name = "access_id"),
+        name = "credential_role",
+        joinColumns = @JoinColumn(name = "credential_id"),
         inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;

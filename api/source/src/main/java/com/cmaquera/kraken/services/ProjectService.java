@@ -12,9 +12,9 @@ public interface ProjectService {
 
     ProjectDTO getProjectById(Long id);
 
-    ProjectDTO updateProject(ProjectDTO postDto, Long id);
+    ProjectDTO updateProject(ProjectDTO projectDTO, Long id);
 
-    void deleteProject(Long id);
+    void removeProject(Long id);
 
     ProjectDTO getAllProjectWithPagination(int pageNo, int pageSize);
 

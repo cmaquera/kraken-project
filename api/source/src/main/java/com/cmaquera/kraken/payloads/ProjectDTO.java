@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-import com.cmaquera.kraken.models.Technology;
-
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
@@ -36,7 +34,7 @@ public class ProjectDTO implements Serializable {
     private Date starDate;
     private Date endDate;
 
-    private Set<Technology> technologies;
+    private Set<TechnologyDTO> technologies;
 
     private Date createdAt;	
 	private Date updatedAt;

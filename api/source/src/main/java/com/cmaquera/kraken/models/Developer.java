@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Developer extends BaseEntity {
     
     private String name;
-    private String apellido;
+    private String lastname;
     private String nikname;
     private String title;
     @Column(name="short_description")
@@ -25,8 +25,8 @@ public class Developer extends BaseEntity {
     private boolean searchWork;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "access_id", referencedColumnName = "id")
-    private Access access;
+    @JoinColumn(name = "credential_id", referencedColumnName = "id")
+    private Credential credential;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
@@ -37,5 +37,9 @@ public class Developer extends BaseEntity {
 
     @OneToMany(mappedBy = "developer")
     private Set<Project> projects;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    private Image image;
 
 }
